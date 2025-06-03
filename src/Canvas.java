@@ -42,6 +42,7 @@ public class Canvas {
         double sum = 0;
         for(int i = 0;i < this.canRow();i++) {
             for(int j = 0;j < this.canCol();j++) {
+                if (this.canvas[i][j] == null) {continue;}
                 sum += this.canvas[i][j].area();
             }
         }
@@ -56,6 +57,7 @@ public class Canvas {
         double sum = 0;
         for(int i = 0;i < this.canRow();i++) {
             for(int j = 0;j < this.canCol();j++) {
+                if (this.canvas[i][j] == null) {continue;}
                 sum += this.canvas[i][j].perimeter();
             }
         }
@@ -69,6 +71,7 @@ public class Canvas {
         }
         for(int i = 0;i < this.canRow();i++) {
             for (int j = 0; j < this.canCol(); j++) {
+                if (this.canvas[i][j] == null) {continue;}
                 if (!(this.canvas[i][j].equals(((Canvas) other).canvas[i][j]))) {
                     return false;
                 }
@@ -82,6 +85,7 @@ public class Canvas {
         String s = "";
         for (int i = 0; i < this.canCol(); i++) {
             for (int j = 0; j < this.canRow(); j++) {
+                if (this.canvas[i][j] == null) {continue;}
                 s += canvas[i][j].toString() + "\n";  // call each shape's toString()
                 s += "\n";  // extra blank line between shapes
             }

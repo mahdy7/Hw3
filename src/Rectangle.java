@@ -19,4 +19,10 @@ public class Rectangle extends Shape {
         if (!(obj instanceof Rectangle other)) return false;
         return this.width == other.getWidth() && this.height == other.getHeight();
     }
+
+  /*  @Override
+    public String toString() {
+
+
+    }*/
 }
