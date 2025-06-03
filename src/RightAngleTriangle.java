@@ -14,4 +14,10 @@ public class RightAngleTriangle extends Shape {
     public int getWidth() {return width;}
 
     public int getHeight() {return height;}
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Rectangle other)) return false;
+        return this.width == other.getWidth() && this.height == other.getHeight();
+    }
 }
