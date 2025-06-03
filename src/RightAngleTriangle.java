@@ -24,7 +24,8 @@ public class RightAngleTriangle extends Shape {
     public String toString() {
         String s = "";
         for (int i = 1; i <= getHeight(); i++) {
-            int stars = (i * getWidth() + getHeight() - 1) / getHeight(); // simulates ceil
+            int stars = ((i - 1) * getWidth()) / getHeight() + 1;
+            if (stars < 1) stars = 1;
             s += "* ".repeat(stars) + "\n";
         }
         return s;

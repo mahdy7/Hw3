@@ -80,11 +80,31 @@ public class Canvas {
         return true;
     }
 
+    /**
+     * the function get max width from the shape with the max width to print all the nulls
+     * @return the max width
+     */
+    public int maxWidth() {
+        int maxWidth = 0;
+        for (int i = 0; i < this.canRow(); i++) {
+            for (int j = 0; j < this.canCol(); j++) {
+                if (this.canvas[i][j].getWidth() > maxWidth) {
+                    maxWidth = this.canvas[i][j].getWidth();
+                }
+            }
+        }
+        return maxWidth;
+    }
+    /**
+     * the function override toString to print objects such canvas or any other shape.
+     *
+     * @return s to System.out.println to make it possible to print any shape.
+     */
     @Override
     public String toString() {
         String s = "";
-        for (int i = 0; i < this.canCol()-1; i++) {
-            for (int j = 0; j < this.canRow()-1; j++) {
+        for (int i = 0; i < this.canRow(); i++) {
+            for (int j = 0; j < this.canCol(); j++) {
                 if (this.canvas[i][j] == null) {continue;}//to change
                 s += canvas[i][j].toString() + "\n";  // call each shape's toString()
                 s += "\n";  // extra blank line between shapes
