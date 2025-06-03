@@ -20,4 +20,13 @@ public class RightAngleTriangle extends Shape {
         if (!(obj instanceof Rectangle other)) return false;
         return this.width == other.getWidth() && this.height == other.getHeight();
     }
+    @Override
+    public String toString() {
+        String s = "";
+        for (int i = 1; i <= getHeight(); i++) {
+            int stars = (i * getWidth() + getHeight() - 1) / getHeight(); // simulates ceil
+            s += "* ".repeat(stars) + "\n";
+        }
+        return s;
+    }
 }

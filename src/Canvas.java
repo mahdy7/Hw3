@@ -83,9 +83,9 @@ public class Canvas {
     @Override
     public String toString() {
         String s = "";
-        for (int i = 0; i < this.canCol(); i++) {
-            for (int j = 0; j < this.canRow(); j++) {
-                if (this.canvas[i][j] == null) {continue;}
+        for (int i = 0; i < this.canCol()-1; i++) {
+            for (int j = 0; j < this.canRow()-1; j++) {
+                if (this.canvas[i][j] == null) {continue;}//to change
                 s += canvas[i][j].toString() + "\n";  // call each shape's toString()
                 s += "\n";  // extra blank line between shapes
             }

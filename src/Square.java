@@ -18,4 +18,12 @@ public class Square extends Shape {
         if (!(obj instanceof Square other)) return false;
         return this.sideLength == other.getWidth();
     }
+    @Override
+    public String toString() {
+        String s = "";
+        for (int i = 0; i < getHeight(); i++) {
+            s += "* ".repeat(getHeight()) + "\n";
+        }
+        return s;
+    }
 }
