@@ -12,4 +12,10 @@ public class Square extends Shape {
     public int getWidth() {return sideLength;}
 
     public int getHeight() {return sideLength;}
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Square other)) return false;
+        return this.sideLength == other.getWidth();
+    }
 }

@@ -12,5 +12,11 @@ public class Circle extends Shape{
     public int getWidth(){return radius;}
 
     public int getHeight(){return radius;}
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Circle other)) return false;
+        return this.radius == other.getWidth();
+    }
 }
 
