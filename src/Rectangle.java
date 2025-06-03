@@ -1,2 +1,16 @@
-public class Rectangle {
+public class Rectangle extends Shape {
+    private int width;
+    private int height;
+    Rectangle(int width,int height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    public double area(){return width*height;}
+
+    public double perimeter(){return 2*(width+height);}
+
+    public int getWidth() {return width;}
+
+    public int getHeight() {return height;}
 }
