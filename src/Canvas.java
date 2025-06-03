@@ -21,7 +21,7 @@ public class Canvas {
      * @param row the row of the shape new place
      * @param col the column of the shape new place
      */
-    private void addShape(Shape shape, int row, int col) {
+    public void addShape(Shape shape, int row, int col) {
     this.canvas[row][col] = shape;
 }
 
@@ -30,7 +30,7 @@ public class Canvas {
      * @param row the row of the shape we want to remove
      * @param col the column of the shape we want to remove
      */
-    private void removeShape(int row, int col) {
+    public void removeShape(int row, int col) {
          this.canvas[row][col] = null;
 }
 
@@ -38,7 +38,7 @@ public class Canvas {
      * the function calculate the total area of all the shapes
      * @return the sum of all the shapes areas
      */
-    private double getTotalArea() {
+    public double getTotalArea() {
         double sum = 0;
         for(int i = 0;i < this.canRow();i++) {
             for(int j = 0;j < this.canCol();j++) {
@@ -52,7 +52,7 @@ public class Canvas {
      * the function calculate the total perimeter of all the shapes
      * @return the sum of all the shapes perimeters
      */
-    private double getTotalPerimeter() {
+    public double getTotalPerimeter() {
         double sum = 0;
         for(int i = 0;i < this.canRow();i++) {
             for(int j = 0;j < this.canCol();j++) {
@@ -61,12 +61,15 @@ public class Canvas {
         }
         return sum;
     }
-   // @Override
-    private boolean equals(Canvas other)
+    @Override
+    public boolean equals(Object other)
     {
+        if (!(other instanceof Canvas)){
+            return false;
+        }
         for(int i = 0;i < this.canRow();i++) {
             for (int j = 0; j < this.canCol(); j++) {
-                if (!(this.canvas[i][j].equals(other.canvas[i][j]))) {
+                if (!(this.canvas[i][j].equals(((Canvas) other).canvas[i][j]))) {
                     return false;
                 }
             }
@@ -74,10 +77,15 @@ public class Canvas {
         return true;
     }
 
-    /**
-     * printing the shapes in the canvas
-     */
-    private void showCanvas() {
-
+    @Override
+    public String toString() {
+        String s = "";
+        for (int i = 0; i < this.canCol(); i++) {
+            for (int j = 0; j < this.canRow(); j++) {
+                s += canvas[i][j].toString() + "\n";  // call each shape's toString()
+                s += "\n";  // extra blank line between shapes
+            }
+        }
+        return s;
     }
 }
