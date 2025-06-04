@@ -20,9 +20,14 @@ public class Rectangle extends Shape {
         return this.width == other.getWidth() && this.height == other.getHeight();
     }
 
-  /*  @Override
+    @Override
     public String toString() {
-
-
-    }*/
+        String line = " ";
+        for (int j = 0;j < width;j++) {
+            line += "* ";
+        }
+        line += "\n";
+        line = line.repeat(height);
+        return line;
+    }
 }
