@@ -30,13 +30,10 @@ public class Circle extends Shape {
     @Override
     public String[] toStringArray() {
         int size = radius * 2 + 1;
-        int lineCount = size * 2 - 1;
+        int lineCount = size ;
         String[] lines = new String[lineCount];
 
         for (int i = 0; i < lineCount; i++) {
-            if (i % 2 == 1) {
-                lines[i] = ""; // blank line
-            } else {
                 int row = i / 2;
                 StringBuilder line = new StringBuilder();
                 for (int col = 0; col < size; col++) {
@@ -50,7 +47,6 @@ public class Circle extends Shape {
                     }
                 }
                 lines[i] = line.toString();
-            }
         }
         return lines;
     }
