@@ -31,7 +31,7 @@ public class RightAngleTriangle extends Shape {
 
     @Override
     public String[] toStringArray() {
-        String[] result = new String[height];
+        String[] result = new String[height+1];
         int maxStars = width;
 
         int totalLength = 1 + (maxStars - 1) * 3 + 2;
@@ -56,7 +56,7 @@ public class RightAngleTriangle extends Shape {
 
             result[i] = line.toString();
         }
-
+        result[height] = "";
         return result;
     }
 

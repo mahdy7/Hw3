@@ -18,13 +18,13 @@ public class Rectangle extends Shape {
 
     @Override
     public String[] toStringArray() {
-        String[] lines = new String[height];
+        String[] lines = new String[height+1];
 
         for (int i = 0; i < height; i++) {
                 String row = " * ".repeat(width); // line with stars
                 lines[i] = row;
         }
-
+        lines[height] = "";
         return lines;
     }
 
@@ -33,21 +33,3 @@ public class Rectangle extends Shape {
         return String.join("\n", toStringArray());
     }
 }
-/*
-@Override
-public String[] toStringArray() {
-    int lineCount = height * 2 - 1; // height + (height - 1) blank lines
-    String[] lines = new String[lineCount];
-
-    for (int i = 0; i < lineCount; i++) {
-        if (i % 2 == 1) {
-            lines[i] = ""; // blank line
-        } else {
-            String row = " * ".repeat(width); // line with stars
-            lines[i] = row;
-        }
-    }
-
-    return lines;
-}
-*/
