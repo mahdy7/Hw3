@@ -59,9 +59,5 @@ public class RightAngleTriangle extends Shape {
         result[height] = "";
         return result;
     }
-
-
-
-
 }
 

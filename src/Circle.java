@@ -34,9 +34,9 @@ public class Circle extends Shape {
 
         for (int i = 0; i < size; i++) {
                 StringBuilder line = new StringBuilder();
-                for (int col = 0; col < size; col++) {
+                for (int j = 0; j < size; j++) {
                     double dx = i - radius;
-                    double dy = col - radius;
+                    double dy = j - radius;
                     double dist = Math.sqrt(dx * dx + dy * dy);
                     if (dist <= radius + 0.3) {
                         line.append(" * ");

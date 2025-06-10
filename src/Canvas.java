@@ -109,7 +109,7 @@ public class Canvas {
             }
         }
         if (allNull) {
-            return "\n\n";
+            return "";
         }
 
         // Compute max widths per column
