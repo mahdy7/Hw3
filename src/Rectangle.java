@@ -1,6 +1,7 @@
 public class Rectangle extends Shape {
-    private int width;
-    private int height;
+    protected  int width;
+    protected  int height;
+
     Rectangle(int width,int height) {
         this.width = width;
         this.height = height;
@@ -14,20 +15,26 @@ public class Rectangle extends Shape {
 
     public int getHeight() {return height;}
 
+
     @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Rectangle other)) return false;
-        return this.width == other.getWidth() && this.height == other.getHeight();
+    public String[] toStringArray() {
+        int lineCount = height * 2 - 1; // height + (height - 1) blank lines
+        String[] lines = new String[lineCount];
+
+        for (int i = 0; i < lineCount; i++) {
+            if (i % 2 == 1) {
+                lines[i] = ""; // blank line
+            } else {
+                String row = " * ".repeat(width); // line with stars
+                lines[i] = row;
+            }
+        }
+
+        return lines;
     }
 
     @Override
     public String toString() {
-        String line = " ";
-        for (int j = 0;j < width;j++) {
-            line += "* ";
-        }
-        line += "\n";
-        line = line.repeat(height);
-        return line;
+        return String.join("\n", toStringArray());
     }
 }

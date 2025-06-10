@@ -1,29 +1,24 @@
-public class Square extends Shape {
+public class Square extends Rectangle
+
+{
     private int sideLength;
 
     Square(int sideLength) {
-        this.sideLength = sideLength;
+        super(sideLength, sideLength);
     }
 
-    public double area() {return sideLength*sideLength;}
+    public double area() {return width*width;}
 
-    public double perimeter() {return sideLength*4;}
+    public double perimeter() {return width*4;}
 
-    public int getWidth() {return sideLength;}
+    public int getWidth() {return width;}
 
-    public int getHeight() {return sideLength;}
+    public int getHeight() {return width;}
 
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Square other)) return false;
-        return this.sideLength == other.getWidth();
-    }
-    @Override
+
+    // Optional: override toString to make printing directly also look good
+   /* @Override
     public String toString() {
-        String s = "";
-        for (int i = 0; i < getHeight(); i++) {
-            s += "* ".repeat(getHeight()) + "\n";
-        }
-        return s;
-    }
+        return String.join("\n", toStringArray());
+    }*/
 }

@@ -1,37 +1,57 @@
-public class Circle extends Shape{
+public class Circle extends Shape {
     int radius;
 
     Circle(int radius) {
         this.radius = radius;
     }
 
-    public double area(){return Math.PI * radius * radius;}
-
-    public double perimeter(){return 2 * Math.PI * radius;}
-
-    public int getWidth(){return radius;}
-
-    public int getHeight(){return radius;}
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Circle other)) return false;
-        return this.radius == other.getWidth();
+    public double area() {
+        return Math.PI * radius * radius;
     }
+
+    public double perimeter() {
+        return 2 * Math.PI * radius;
+    }
+
+    public int getWidth() {
+        return radius;
+    }
+
+    public int getHeight() {
+        return radius;
+    }
+
 
     @Override
     public String toString() {
-        String line = "";
-        for(int i = 0; i < radius*2 + 1; i++){
-            for(int j = 0; j < radius*2 + 1; j++){
-                double distance = Math.sqrt((i - (double)radius)*(i - (double)radius)+ (j - (double)radius)*(j - (double)radius));
-                if(distance <= (radius + 0.3)) {
-                    line += " * ";
-                } else {line += "   ";}
+        return String.join("\n", toStringArray());
+    }
+
+    @Override
+    public String[] toStringArray() {
+        int size = radius * 2 + 1;
+        int lineCount = size * 2 - 1;
+        String[] lines = new String[lineCount];
+
+        for (int i = 0; i < lineCount; i++) {
+            if (i % 2 == 1) {
+                lines[i] = ""; // blank line
+            } else {
+                int row = i / 2;
+                StringBuilder line = new StringBuilder();
+                for (int col = 0; col < size; col++) {
+                    double dx = row - radius;
+                    double dy = col - radius;
+                    double dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist <= radius + 0.3) {
+                        line.append(" * ");
+                    } else {
+                        line.append("   ");
+                    }
+                }
+                lines[i] = line.toString();
             }
-            line += "\n";
         }
-        return line;
+        return lines;
     }
 }
-
