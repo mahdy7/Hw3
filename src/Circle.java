@@ -14,11 +14,11 @@ public class Circle extends Shape {
     }
 
     public int getWidth() {
-        return radius;
+        return radius*2+1;
     }
 
     public int getHeight() {
-        return radius;
+        return radius*2+1;
     }
 
 

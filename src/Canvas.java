@@ -4,17 +4,12 @@ public class Canvas {
     private int width;
     private int height;
 
-    Canvas(int width, int height) {
-    this.canvas = new Shape[width][height];
-    this.width = width;
+    Canvas(int height, int width) {
+    this.canvas = new Shape[height][width];
     this.height = height;
-}
-    private int canRow() {
-        return this.width;
+    this.width = width;
     }
-    private int canCol() {
-        return this.height;
-    }
+
     /**
      * the function gets shape, row and column and add the shape to the array
      * @param shape the shape we want to add
@@ -40,8 +35,8 @@ public class Canvas {
      */
     public double getTotalArea() {
         double sum = 0;
-        for(int i = 0;i < this.canRow();i++) {
-            for(int j = 0;j < this.canCol();j++) {
+        for(int i = 0;i < this.width;i++) {
+            for(int j = 0;j < this.height;j++) {
                 if (this.canvas[i][j] == null) {continue;}
                 sum += this.canvas[i][j].area();
             }
@@ -55,8 +50,8 @@ public class Canvas {
      */
     public double getTotalPerimeter() {
         double sum = 0;
-        for(int i = 0;i < this.canRow();i++) {
-            for(int j = 0;j < this.canCol();j++) {
+        for(int i = 0;i < this.width;i++) {
+            for(int j = 0;j < this.height;j++) {
                 if (this.canvas[i][j] == null) {continue;}
                 sum += this.canvas[i][j].perimeter();
             }
@@ -69,12 +64,12 @@ public class Canvas {
             return false;
         }
 
-        if (this.canRow() != otherCanvas.canRow() || this.canCol() != otherCanvas.canCol()) {
+        if (this.width != otherCanvas.width || this.height != otherCanvas.height) {
             return false;
         }
 
-        for (int i = 0; i < this.canRow(); i++) {
-            for (int j = 0; j < this.canCol(); j++) {
+        for (int i = 0; i < this.width; i++) {
+            for (int j = 0; j < this.height; j++) {
                 Shape a = this.canvas[i][j];
                 Shape b = otherCanvas.canvas[i][j];
 
@@ -92,66 +87,52 @@ public class Canvas {
 
     @Override
     public String toString() {
-        int rows = canRow();
-        int cols = canCol();
 
-        if (rows == 0 || cols == 0) {
+        if (width == 0 || height == 0) {
             return "";
         }
 
-
         boolean allNull = true;
-        for (int i = 0; i < rows && allNull; i++) {
-            for (int j = 0; j < cols && allNull; j++) {
+        for (int i = 0; i < width && allNull; i++) {
+            for (int j = 0; j < height && allNull; j++) {
                 if (canvas[i][j] != null) {
                     allNull = false;
                 }
             }
         }
-        if (allNull) {
-            return "";
-        }
+        if (allNull) return "";
 
         // Compute max widths per column
-        int[] maxWidths = new int[cols];
-        for (int col = 0; col < cols; col++) {
+        int[] maxWidths = new int[width];
+        for (int row = 0; row < width; row++) {
             int maxWidth = 0;
-            for (int row = 0; row < rows; row++) {
-                if (canvas[row][col] != null) {
-                    String[] lines = canvas[row][col].toStringArray();
-                    for (String line : lines) {
-                        if (line.length() > maxWidth) {
-                            maxWidth = line.length();
-                        }
-                    }
+            for (int col = 0; col < height; col++) {
+                if (canvas[row][col] != null && maxWidth < canvas[row][col].getWidth()) {
+                    maxWidth = canvas[row][col].getWidth();
                 }
             }
-            maxWidths[col] = maxWidth > 0 ? maxWidth : 1;
         }
 
         // Compute max heights per row
-        int[] maxHeights = new int[rows];
-        for (int row = 0; row < rows; row++) {
+        int[] maxHeights = new int[height];
+        for (int row = 0; row < height; row++) {
             int maxHeight = 0;
-            for (int col = 0; col < cols; col++) {
-                if (canvas[row][col] != null) {
-                    int h = canvas[row][col].toStringArray().length;
-                    if (h > maxHeight) {
-                        maxHeight = h;
-                    }
+            for (int col = 0; col < width; col++) {
+                if (canvas[row][col] != null && canvas[row][col].getHeight() > maxHeight) {
+                    maxHeight = canvas[row][col].getHeight();
                 }
             }
-            maxHeights[row] = maxHeight > 0 ? maxHeight : 1;
+            maxHeights[row] = maxHeight;
         }
 
         StringBuilder sb = new StringBuilder();
 
-        for (int row = 0; row < rows; row++) {
+        for (int row = 0; row < height; row++) {
             int height = maxHeights[row];
 
             // Collect all shapes lines for this row
-            String[][] shapesLines = new String[cols][];
-            for (int col = 0; col < cols; col++) {
+            String[][] shapesLines = new String[width][];
+            for (int col = 0; col < width; col++) {
                 if (canvas[row][col] != null) {
                     shapesLines[col] = canvas[row][col].toStringArray();
                 } else {
@@ -164,7 +145,7 @@ public class Canvas {
 
             // Build each line for this canvas row
             for (int lineIdx = 0; lineIdx < height; lineIdx++) {
-                for (int col = 0; col < cols; col++) {
+                for (int col = 0; col < width; col++) {
                     String line = "";
                     if (lineIdx < shapesLines[col].length && shapesLines[col][lineIdx] != null) {
                         line = shapesLines[col][lineIdx];
@@ -182,7 +163,6 @@ public class Canvas {
                 sb.append("\n");
             }
         }
-
         return sb.toString();
     }
 }
