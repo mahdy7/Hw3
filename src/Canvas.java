@@ -90,35 +90,6 @@ public class Canvas {
     }
 
 
-    /**
-     * the function get max width from the shape with the max width to print all the nulls
-     * @return the max width
-     */
-    // Returns the maximum width of all shapes in the canvas
-    private int getMaxShapeWidth() {
-        int maxWidth = 0;
-        for (int i = 0; i < canvas.length; i++) {
-            for (int j = 0; j < canvas[0].length; j++) {
-                if (canvas[i][j] != null) {
-                    maxWidth = Math.max(maxWidth, canvas[i][j].getWidth());
-                }
-            }
-        }
-        return maxWidth * 3; // 2 spaces between * and 1 trailing space
-    }
-
-
-    private int getRowMaxHeight(int row) {
-        int maxHeight = 0;
-        for (int j = 0; j < canvas[0].length; j++) {
-            if (canvas[row][j] != null) {
-                maxHeight = Math.max(maxHeight, canvas[row][j].getHeight());
-            }
-        }
-        return maxHeight;
-    }
-
-
     @Override
     public String toString() {
         int rows = canRow();
@@ -138,7 +109,7 @@ public class Canvas {
             }
         }
         if (allNull) {
-            return "";
+            return "\n\n";
         }
 
         // Compute max widths per column

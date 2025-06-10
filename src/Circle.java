@@ -29,15 +29,13 @@ public class Circle extends Shape {
 
     @Override
     public String[] toStringArray() {
-        int size = radius * 2 + 1;
-        int lineCount = size ;
-        String[] lines = new String[lineCount];
+        int size = radius*2 + 1;
+        String[] lines = new String[size+1];
 
-        for (int i = 0; i < lineCount; i++) {
-                int row = i / 2;
+        for (int i = 0; i < size; i++) {
                 StringBuilder line = new StringBuilder();
                 for (int col = 0; col < size; col++) {
-                    double dx = row - radius;
+                    double dx = i - radius;
                     double dy = col - radius;
                     double dist = Math.sqrt(dx * dx + dy * dy);
                     if (dist <= radius + 0.3) {
@@ -48,6 +46,7 @@ public class Circle extends Shape {
                 }
                 lines[i] = line.toString();
         }
+        lines[size] = "";
         return lines;
     }
 }
