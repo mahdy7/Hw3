@@ -28,6 +28,7 @@ public class Rectangle extends Shape {
         return lines;
     }
 
+
     @Override
     public String toString() {
         return String.join("\n", toStringArray());

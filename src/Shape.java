@@ -25,5 +25,4 @@ abstract class Shape {
                 Double.compare(this.area(), other.area()) == 0 &&
                 Double.compare(this.perimeter(), other.perimeter()) == 0;
     }
-
 }
