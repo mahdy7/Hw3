@@ -88,6 +88,14 @@ public class Canvas {
         return "   ".repeat(Width);
     }
 
+    public boolean isRowNull(int row) {
+        boolean isNull = true;
+        for (int i = 0; i < this.width; i++) {
+            if ()
+        }
+        return isNull;
+    }
+
     @Override
     public String toString() {
 
@@ -116,7 +124,6 @@ public class Canvas {
         }
 
         // Compute max heights per row
-        int wholeHeight = height;
         int[] maxHeights = new int[height];
         for (int row = 0; row < height; row++) {
             int maxHeight = 0;
@@ -129,10 +136,8 @@ public class Canvas {
                 }
             }
             maxHeights[row] = maxHeight;
-            wholeHeight += maxHeight;
         }
 
-    //    String[][] shapesLines = new String[wholeHeight][width];
         StringBuilder sb = new StringBuilder();
         for (int row = 0; row < height; row++) {
             int rowHeight = maxHeights[row];
@@ -151,27 +156,6 @@ public class Canvas {
             }
             sb.append("\n");
         }
-
-    /*        // Build each line for this canvas row
-            for (int lineIdx = 0; lineIdx < height; lineIdx++) {
-                for (int col = 0; col < width; col++) {
-                    String line = "";
-                    if (lineIdx < shapesLines[col].length && shapesLines[col][lineIdx] != null) {
-                        line = shapesLines[col][lineIdx];
-                    }
-                    if (line.trim().isEmpty()) {
-                        sb.append(" ".repeat(maxWidths[col]));
-                    } else {
-                        sb.append(line);
-                        int pad = maxWidths[col] - line.length();
-                        if (pad > 0) {
-                            sb.append(" ".repeat(pad));
-                        }
-                    }
-                }
-                sb.append("\n");
-            } */
         return sb.toString();
-
     }
 }
