@@ -5,39 +5,44 @@ public class Canvas {
     private int height;
 
     Canvas(int height, int width) {
-    this.canvas = new Shape[height][width];
-    this.height = height;
-    this.width = width;
+        this.canvas = new Shape[height][width];
+        this.height = height;
+        this.width = width;
     }
 
     /**
      * the function gets shape, row and column and add the shape to the array
+     *
      * @param shape the shape we want to add
-     * @param row the row of the shape new place
-     * @param col the column of the shape new place
+     * @param row   the row of the shape new place
+     * @param col   the column of the shape new place
      */
     public void addShape(Shape shape, int row, int col) {
-    this.canvas[row][col] = shape;
-}
+        this.canvas[row][col] = shape;
+    }
 
     /**
      * the function remove the shape and replace it with null
+     *
      * @param row the row of the shape we want to remove
      * @param col the column of the shape we want to remove
      */
     public void removeShape(int row, int col) {
-         this.canvas[row][col] = null;
-}
+        this.canvas[row][col] = null;
+    }
 
     /**
      * the function calculate the total area of all the shapes
+     *
      * @return the sum of all the shapes areas
      */
     public double getTotalArea() {
         double sum = 0;
-        for(int i = 0;i < this.height;i++) {
-            for(int j = 0;j < this.width;j++) {
-                if (this.canvas[i][j] == null) {continue;}
+        for (int i = 0; i < this.height; i++) {
+            for (int j = 0; j < this.width; j++) {
+                if (this.canvas[i][j] == null) {
+                    continue;
+                }
                 sum += this.canvas[i][j].area();
             }
         }
@@ -46,18 +51,27 @@ public class Canvas {
 
     /**
      * the function calculate the total perimeter of all the shapes
+     *
      * @return the sum of all the shapes perimeters
      */
     public double getTotalPerimeter() {
         double sum = 0;
-        for(int i = 0;i < this.height;i++) {
-            for(int j = 0;j < this.width;j++) {
-                if (this.canvas[i][j] == null) {continue;}
+        for (int i = 0; i < this.height; i++) {
+            for (int j = 0; j < this.width; j++) {
+                if (this.canvas[i][j] == null) {
+                    continue;
+                }
                 sum += this.canvas[i][j].perimeter();
             }
         }
         return sum;
     }
+
+    /**
+     *
+     * @param other the other canvas
+     * @return if the two canvases are equal returns true, else false
+     */
     @Override
     public boolean equals(Object other) {
         if (!(other instanceof Canvas otherCanvas)) {
@@ -73,9 +87,9 @@ public class Canvas {
                 Shape a = this.canvas[i][j];
                 Shape b = otherCanvas.canvas[i][j];
 
-                if (a == null && b == null) continue;
-
-                if (a == null || b == null || !a.equals(b)) {
+                if (a != null) {
+                    if (!a.equals(b)) return false;
+                } else if (b != null) {
                     return false;
                 }
             }
@@ -84,36 +98,59 @@ public class Canvas {
         return true;
     }
 
+    /**
+     *
+     * @param Width the width of the shape
+     * @return empty string with the width of the shape multiplied by 3 in spaces
+     */
     public String addEmptyString(int Width) {
         return "   ".repeat(Width);
     }
 
+    /**
+     *
+     * @param row the row of the canvas as array
+     * @return if the row is all null, return true, else return false
+     */
     public boolean isRowNull(int row) {
-        boolean isNull = true;
         for (int i = 0; i < this.width; i++) {
-            if ()
-        }
-        return isNull;
-    }
-
-    @Override
-    public String toString() {
-
-        if (width == 0 || height == 0) {
-            return "";
-        }
-
-        boolean allNull = true;
-        for (int i = 0; i < height && allNull; i++) {
-            for (int j = 0; j < width && allNull; j++) {
-                if (canvas[i][j] != null) {
-                    allNull = false;
-                }
+            if (this.canvas[row][i] != null) {
+                return false;
             }
         }
-        if (allNull) return "";
+        return true;
+    }
 
-        // Compute max widths per column
+    /**
+     *
+     * @return the maximum height of each row,return an array of all the rows
+     */
+    public int[] getMaxHeight() {
+
+        // Compute max heights per row
+        int[] maxHeights = new int[height];
+        for (
+                int row = 0;
+                row < height; row++) {
+            int maxHeight = 0;
+            for (int col = 0; col < width; col++) {
+                if (canvas[row][col] != null) {
+                    int currentHeight = canvas[row][col].getHeight();
+                    if (currentHeight > maxHeight) {
+                        maxHeight = canvas[row][col].getHeight();
+                    }
+                }
+            }
+            maxHeights[row] = maxHeight;
+        }
+        return maxHeights;
+    }
+
+    /**
+     *
+     * @return the maximum width of all shapes
+     */
+    public int getMaxWidth() {
         int maxWidth = 0;
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
@@ -122,35 +159,37 @@ public class Canvas {
                 }
             }
         }
+        return maxWidth;
+    }
 
-        // Compute max heights per row
-        int[] maxHeights = new int[height];
-        for (int row = 0; row < height; row++) {
-            int maxHeight = 0;
-            for (int col = 0; col < width; col++) {
-                if (canvas[row][col] != null){
-                    int currentHeight = canvas[row][col].getHeight();
-                    if (currentHeight > maxHeight) {
-                    maxHeight = canvas[row][col].getHeight();
-                    }
-                }
-            }
-            maxHeights[row] = maxHeight;
+    /**
+     *
+     * @return return the canvas with all the shapes in it, calculating all the spaces and shapes
+     */
+    @Override
+    public String toString() {
+
+        if (width == 0 || height == 0) {
+            return "";
         }
+
+        int[] maxHeights = getMaxHeight();
+        int maxWidth = getMaxWidth();
 
         StringBuilder sb = new StringBuilder();
         for (int row = 0; row < height; row++) {
+            if (isRowNull(row)) {sb.append("\n");continue;}
             int rowHeight = maxHeights[row];
-            for (int lineIdx = 0; lineIdx < rowHeight ; lineIdx++) {
+            for (int lineIdx = 0; lineIdx < rowHeight; lineIdx++) {
                 for (int shapeIdx = 0; shapeIdx < width; shapeIdx++) {
                     if (canvas[row][shapeIdx] == null) {
                         sb.append(addEmptyString(maxWidth));
-                    } else if (canvas[row][shapeIdx] != null && canvas[row][shapeIdx].getHeight() < rowHeight) {
+                    } else if (canvas[row][shapeIdx] != null && canvas[row][shapeIdx].getHeight() < lineIdx + 1) {
                         sb.append(addEmptyString(canvas[row][shapeIdx].getWidth()));
                     } else {
                         sb.append(canvas[row][shapeIdx].toStringArray()[lineIdx]);
                     }
-                    if (shapeIdx+1 < width) sb.append("   ");
+                    if (shapeIdx + 1 < width) sb.append("   ");
                 }
                 sb.append("\n");
             }

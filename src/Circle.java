@@ -5,28 +5,37 @@ public class Circle extends Shape {
         this.radius = radius;
     }
 
-    public double area() {
-        return Math.PI * radius * radius;
-    }
+    /**
+     * @return the area of the shape
+     */
+    public double area() {return Math.PI * radius * radius;}
 
-    public double perimeter() {
-        return 2 * Math.PI * radius;
-    }
+    /**
+     * @return the perimeter of the shape
+     */
+    public double perimeter() {return 2 * Math.PI * radius;}
 
-    public int getWidth() {
-        return radius*2+1;
-    }
+    /**
+     * @return gets the width of the shape
+     */
+    public int getWidth() {return radius*2+1;}
 
-    public int getHeight() {
-        return radius*2+1;
-    }
+    /**
+     * @return gets the height of the shape
+     */
+    public int getHeight() {return radius*2+1;}
 
-
+    /**
+     * when asked to print the shape by itself
+     * @return the whole shape
+     */
     @Override
-    public String toString() {
-        return String.join("\n", toStringArray());
-    }
+    public String toString() {return String.join("\n", toStringArray());}
 
+    /**
+     * draw the shape line by line
+     * @return each time the line of the shape
+     */
     @Override
     public String[] toStringArray() {
         int size = radius*2 + 1;
