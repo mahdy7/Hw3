@@ -1,9 +1,14 @@
 public class Circle extends Shape {
-    int radius;
+    private int radius;
 
     Circle(int radius) {
         this.radius = radius;
     }
+
+    /**
+     * @return the radius of the circle
+     */
+    public int getRadius() {return radius;}
 
     /**
      * @return the area of the shape
@@ -16,25 +21,36 @@ public class Circle extends Shape {
     public double perimeter() {return 2 * Math.PI * radius;}
 
     /**
-     * @return gets the width of the shape
+     * @return the width of the shape
      */
     public int getWidth() {return radius*2+1;}
 
     /**
-     * @return gets the height of the shape
+     * @return the height of the shape
      */
     public int getHeight() {return radius*2+1;}
 
     /**
-     * when asked to print the shape by itself
-     * @return the whole shape
+     * @param object object could be one of the shapes
+     * @return true if obj is the same shape as this
+     */
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object instanceof Circle other) {
+            return other.getRadius() == this.radius;
+        }
+        return false;
+    }
+
+    /**
+     * @return the whole shape as a String
      */
     @Override
     public String toString() {return String.join("\n", toStringArray());}
 
     /**
-     * draw the shape line by line
-     * @return each time the line of the shape
+     * @return the shape as an array of Strings where every String is a line of the shape
      */
     @Override
     public String[] toStringArray() {
@@ -48,9 +64,9 @@ public class Circle extends Shape {
                     double dy = j - radius;
                     double dist = Math.sqrt(dx * dx + dy * dy);
                     if (dist <= radius + 0.3) {
-                        line.append(" * ");
+                        line.append(STAR);
                     } else {
-                        line.append("   ");
+                        line.append(SPACE);
                     }
                 }
                 lines[i] = line.toString();

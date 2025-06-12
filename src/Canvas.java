@@ -1,4 +1,6 @@
 public class Canvas {
+    final static String STAR = " * ";
+    final static String SPACE = "   ";
 
     private Shape[][] canvas;
     private int width;
@@ -11,7 +13,7 @@ public class Canvas {
     }
 
     /**
-     * the function gets shape, row and column and add the shape to the array
+     * adds the shape to the canvas in the row and col given
      *
      * @param shape the shape we want to add
      * @param row   the row of the shape new place
@@ -22,7 +24,7 @@ public class Canvas {
     }
 
     /**
-     * the function remove the shape and replace it with null
+     * removes the shape and replace it with null
      *
      * @param row the row of the shape we want to remove
      * @param col the column of the shape we want to remove
@@ -32,9 +34,9 @@ public class Canvas {
     }
 
     /**
-     * the function calculate the total area of all the shapes
+     * calculates the total area of all the shapes
      *
-     * @return the sum of all the shapes areas
+     * @return the sum of all the shapes' areas
      */
     public double getTotalArea() {
         double sum = 0;
@@ -50,9 +52,9 @@ public class Canvas {
     }
 
     /**
-     * the function calculate the total perimeter of all the shapes
+     * calculates the total perimeter of all the shapes
      *
-     * @return the sum of all the shapes perimeters
+     * @return the sum of all the shapes' perimeters
      */
     public double getTotalPerimeter() {
         double sum = 0;
@@ -68,7 +70,6 @@ public class Canvas {
     }
 
     /**
-     *
      * @param other the other canvas
      * @return if the two canvases are equal returns true, else false
      */
@@ -94,7 +95,6 @@ public class Canvas {
                 }
             }
         }
-
         return true;
     }
 
@@ -104,7 +104,7 @@ public class Canvas {
      * @return empty string with the width of the shape multiplied by 3 in spaces
      */
     public String addEmptyString(int Width) {
-        return "   ".repeat(Width);
+        return SPACE.repeat(Width);
     }
 
     /**
@@ -123,7 +123,7 @@ public class Canvas {
 
     /**
      *
-     * @return the maximum height of each row,return an array of all the rows
+     * @return an array with the maximum heights for each row
      */
     public int[] getMaxHeight() {
 
@@ -189,7 +189,7 @@ public class Canvas {
                     } else {
                         sb.append(canvas[row][shapeIdx].toStringArray()[lineIdx]);
                     }
-                    if (shapeIdx + 1 < width) sb.append("   ");
+                    if (shapeIdx + 1 < width) sb.append(SPACE);
                 }
                 sb.append("\n");
             }

@@ -18,14 +18,13 @@ public class Square extends Rectangle
     public double perimeter() {return width*4;}
 
     /**
-     * @return gets the width of the shape
+     * @return the width of the shape
      */
     public int getWidth() {return width;}
 
     /**
-     * @return gets the height of the shape
+     * @return the height of the shape
      */
     public int getHeight() {return width;}
-
 
 }

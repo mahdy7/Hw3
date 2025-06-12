@@ -1,4 +1,6 @@
 public class RightAngleTriangle extends Shape {
+    static final String STAR = "*";
+    static final String SPACE = " ";
     private int width;
     private int height;
 
@@ -17,25 +19,36 @@ public class RightAngleTriangle extends Shape {
     public double perimeter() {return width + height + (Math.sqrt(width * width + height * height));}
 
     /**
-     * @return gets the width of the shape
+     * @return the width of the shape
      */
     public int getWidth() {return width;}
 
     /**
-     * @return gets the height of the shape
+     * @return the height of the shape
      */
     public int getHeight() {return height;}
 
     /**
-     * when asked to print the shape by itself
-     * @return the whole shape
+     * @param obj object could be one of the shapes
+     * @return true if obj is the same shape as this
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj instanceof RightAngleTriangle other) {
+            return other.width == this.width && other.height == this.height;
+        }
+        return false;
+    }
+
+    /**
+     * @return the whole shape as a String
      */
     @Override
     public String toString() {return String.join("\n", toStringArray());}
 
     /**
-     * draw the shape line by line
-     * @return each time the line of the shape
+     * @return the shape as an array of Strings where every String is a line of the shape
      */
     @Override
     public String[] toStringArray() {
@@ -49,19 +62,19 @@ public class RightAngleTriangle extends Shape {
 
             if (stars < 1) stars = 1; // ensure at least one star
 
-            StringBuilder line = new StringBuilder(" ");
+            StringBuilder line = new StringBuilder(SPACE);
 
             for (int j = 0; j < stars; j++) {
-                line.append("*");
+                line.append(STAR);
                 if (j < stars - 1) {
                     line.append("  "); // 2 spaces between stars
                 } else {
-                    line.append(" "); // 1 space after last star
+                    line.append(SPACE); // 1 space after last star
                 }
             }
 
             while (line.length() < totalLength) {
-                line.append(" ");
+                line.append(SPACE);
             }
 
             result[i] = line.toString();

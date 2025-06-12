@@ -1,38 +1,33 @@
 public abstract class Shape {
-
+    static final String STAR = " * ";
+    static final String SPACE = "   ";
     /**
-     *
      * @return area of the shape
      */
     public abstract double area();
 
     /**
-     *
      * @return perimeter of the shape
      */
     public abstract double perimeter();
 
     /**
-     *
      * @return the width of the shape
      */
     public abstract int getWidth();
 
     /**
-     *
      * @return the height of the shape
      */
     public abstract int getHeight();
 
     /**
-     *
-     * @return to print the whole shape, by adding all the lines of she shapes together
+     * @return the whole shape as an array of Strings where every String is a line of the shape
      */
     public abstract String[] toStringArray();
 
     /**
-     *
-     * @return printing each shape line after line
+     * @return the shape as one String
      */
     @Override
     public String toString() {
@@ -40,19 +35,9 @@ public abstract class Shape {
     }
 
     /**
-     *
      * @param obj object could be one of the shapes
      * @return if the two shapes are equal return ture, else false
      */
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || this.getClass() != obj.getClass()) return false;
-
-        Shape other = (Shape) obj;
-        return this.getWidth() == other.getWidth() &&
-                this.getHeight() == other.getHeight() &&
-                Double.compare(this.area(), other.area()) == 0 &&
-                Double.compare(this.perimeter(), other.perimeter()) == 0;
-    }
+    public abstract boolean equals(Object obj);
 }
